@@ -9,6 +9,13 @@ module BoxPacker
         @location = location
         @dimensions = dimensions
       end
+
+      def limits
+        @limits ||= {
+          x0: location[:x],
+          x1: location[:x] + dimensions[:x]
+        }
+      end
     end
   end
 end

@@ -18,4 +18,13 @@ RSpec.describe BoxPacker::Box::OneDimension do
       expect(result).to include(x: 2)
     end
   end
+
+  describe '#limits' do
+    let(:result) { subject.limits }
+
+    it 'has the correct values' do
+      expect(result).to include(x0: 1)
+      expect(result).to include(x1: 3)
+    end
+  end
 end

@@ -10,14 +10,19 @@ module BoxPacker
         @dimensions = dimensions
       end
 
+      def limits
+        @limits ||= {
+          x0: location[:x],
+          x1: location[:x] + dimensions[:x]
+        }
+      end
+
       def inside_box?(box)
-        box.location[:x] <= location[:x] &&
-          (box.location[:x] + box.dimensions[:x] >= location[:x] + dimensions[:x])
+        box.limits[:x0] <= limits[:x0] && box.limits[:x1] >= limits[:x1]
       end
 
       def intersects_product?(product)
-        product.location[:x] + product.dimensions[:x] > location[:x] &&
-          product.location[:x] < location[:x] + dimensions[:x]
+        product.limits[:x1] > limits[:x0] && product.limits[:x0] < limits[:x1]
       end
     end
   end

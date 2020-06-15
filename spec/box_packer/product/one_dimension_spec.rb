@@ -19,6 +19,15 @@ RSpec.describe BoxPacker::Product::OneDimension do
     end
   end
 
+  describe '#limits' do
+    let(:result) { subject.limits }
+
+    it 'has the correct values' do
+      expect(result).to include(x0: 1)
+      expect(result).to include(x1: 5)
+    end
+  end
+
   describe '#inside_box?' do
     let(:result) { subject.inside_box?(box) }
 
