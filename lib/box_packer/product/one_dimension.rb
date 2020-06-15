@@ -14,6 +14,11 @@ module BoxPacker
         box.location[:x] <= location[:x] &&
           (box.location[:x] + box.dimensions[:x] >= location[:x] + dimensions[:x])
       end
+
+      def intersects_product?(product)
+        product.location[:x] + product.dimensions[:x] > location[:x] &&
+          product.location[:x] < location[:x] + dimensions[:x]
+      end
     end
   end
 end

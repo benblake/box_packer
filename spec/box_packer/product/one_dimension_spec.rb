@@ -46,4 +46,32 @@ RSpec.describe BoxPacker::Product::OneDimension do
       it { expect(result).to eq(false) }
     end
   end
+
+  describe '#intersects_product?' do
+    let(:result) { subject.intersects_product?(product) }
+
+    context 'with no intersection high' do
+      let(:product) { BoxPacker::Product::OneDimension.new(location: { x: 5 }, dimensions: { x: 2 }) }
+
+      it { expect(result).to eq(false) }
+    end
+
+    context 'with no intersection low' do
+      let(:product) { BoxPacker::Product::OneDimension.new(location: { x: 0 }, dimensions: { x: 1 }) }
+
+      it { expect(result).to eq(false) }
+    end
+
+    context 'with lower intersection' do
+      let(:product) { BoxPacker::Product::OneDimension.new(location: { x: 0 }, dimensions: { x: 2 }) }
+
+      it { expect(result).to eq(true) }
+    end
+
+    context 'with upper intersection' do
+      let(:product) { BoxPacker::Product::OneDimension.new(location: { x: 4 }, dimensions: { x: 3 }) }
+
+      it { expect(result).to eq(true) }
+    end
+  end
 end
