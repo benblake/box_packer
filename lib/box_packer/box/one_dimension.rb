@@ -3,10 +3,11 @@
 module BoxPacker
   module Box
     class OneDimension
-      attr_reader :x
+      attr_reader :location, :dimensions
 
-      def initialize(x)
-        @x = x
+      def initialize(location:, dimensions:)
+        @location = location
+        @dimensions = dimensions
       end
     end
   end
