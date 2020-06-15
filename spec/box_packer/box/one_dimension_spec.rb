@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe BoxPacker::Box::OneDimension do
   subject { described_class.new(5) }
 
